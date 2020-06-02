@@ -1,0 +1,8 @@
+{% extends 'instametric/base.html' %}
+{% block content %}
+<div style="text-align: center; color: white">
+    <h1>404</h1>
+    <p>Post with given code does not exist or account is private <i class="fa fa-user-secret"></i> :(</p>
+    <a class="btn btn-outline-light" href="{% url 'home' %}">Back to home</a>
+</div>
+{% endblock content %}

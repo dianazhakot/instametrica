@@ -1,0 +1,62 @@
+{% extends 'instametric/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if is_video %}
+            <div class="container">
+                <video src="{{ source }}" width="480" height="auto" controls muted style="border-radius: 15px;"
+                       class="mb-5 ml-4"></video>
+            </div>
+            {% else %}
+            <img src="{{ source }}"
+                 alt="" style="width: 480px; height: auto; border-radius: 15px" class="mb-5">
+            {% endif %}
+        </div>
+        <div class="col-sm ml-5">
+            <span class="float-left mr-4"><h1 style="color:white;">{{ likes }} <i
+                    class="fa fa-heart fa-sm"></i></h1></span>
+            <span class="float-left mr-4"><h1 style="color:white">{% if comments == 300 %}>300{% else %}{{ comments }}{% endif %} <i
+                    class="fa fa-comments fa-sm"></i></h1></span>
+            <span><h1 style="color:white">{{ hashtags }} <i class="fa fa-hashtag fa-sm"></i></h1></span>
+            <span class="ml-1"><h1 style="color:white"><img src="{{ profile_picture }}" alt="" style="width: 60px; height: 60px; border-radius: 50%" class="mr-3"><a target="_blank"
+                                                                                               href="http://instagram.com/{{ username }}/">{{ username }}</a> ({{ followers }} <i
+                    class="fa fa-users fa-sm ml-2"></i>)</h1></span>
+            <!--            <div class="container-fluid">-->
+            <p style="color: white" class="mt-4">{% if caption %}{{ caption|truncatewords:"75" }}{% endif %}</p>
+            {% if tags_list %}
+            <i class="fa fa-hashtag fa-lg"></i>
+            {% for tag in tags_list %}
+            <span style="color: white;">{{ tag }},</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!--        </div>-->
+    </div>
+    <div class="row justify-content-center mt-5">
+        {% if is_many_likes %}
+        <div><h1 style="color: white;">This post might have so many likes because of:</h1></div>
+        {% else %}
+        <div><h1 style="color: white;">This post does not have many likes :(</h1></div>
+        {% endif %}
+    </div>
+    <div class="row justify-content-center mt-4 mb-5" style="color: white">
+        <div class="col-sm-3">
+            <span><h3>Many comments: {% if has_more_comments %}<i class="fa fa-check"></i>{% else %}<i
+                    class="fa fa-times"></i>{% endif %}</h3></span>
+        </div>
+        <div class="col-sm-3">
+            <span><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popular tags: {% if popolar_tags %}<i class="fa fa-check"></i>{% else %}<i
+                    class="fa fa-times"></i>{% endif %}</h3></span>
+        </div>
+        <div class="col-sm-3">
+            <span><h3>Many followers: {% if is_many_followers %}<i class="fa fa-check"></i>{% else %}<i
+                    class="fa fa-times"></i>{% endif %}</h3></span>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3">
+        <a href="{% url 'home' %}" class="btn btn-outline-light">Back to home</a>
+    </div>
+</div>
+</div>
+{% endblock content %}

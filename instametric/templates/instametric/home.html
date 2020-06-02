@@ -1,0 +1,8 @@
+{% extends 'instametric/base.html' %}
+{% block content %}
+<form method="POST" class="main-form">
+    {% csrf_token %}
+    <input type="url" class="main-input" name="url" required><Br>
+    <button type="submit" class="btn btn-outline-light btn-sm submit-button">Show info</button>
+</form>
+{% endblock content %}
